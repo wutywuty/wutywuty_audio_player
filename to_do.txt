@@ -1,0 +1,15 @@
+the to-do list:
+
+	higher priority:
+		finish adding features:
+		- add deleting playlists
+		- allow creation of playlists from within application
+	- refactor everything because i stopped working on this for a week and
+	  forgot my mental map;  everything looks TERRIBLE now!!!!
+
+	lower priority:
+		add eye candy:
+		- make the GUI look nice
+		- add customisation such as an accent colour
+	- make all strings come from something like .csv file for multi-language
+	  support

@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://bjf04jyl87lpb"]
+
+[ext_resource type="Script" path="res://scene/main.gd" id="1_7cqu5"]
+[ext_resource type="Script" path="res://script/audio_stream_player.gd" id="1_gx4x5"]
+[ext_resource type="Theme" uid="uid://cji2molj0sotm" path="res://theme/default_theme.tres" id="1_hussy"]
+[ext_resource type="PackedScene" uid="uid://s133w8y7rddp" path="res://scene/default_gui.tscn" id="2_vvvft"]
+[ext_resource type="Script" path="res://script/file_handler.gd" id="4_ywo2s"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_7cqu5")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+script = ExtResource("1_gx4x5")
+
+[node name="file_handler" type="Node" parent="."]
+script = ExtResource("4_ywo2s")
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_hussy")
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_hussy")
+
+[node name="default_gui" parent="GUI/MarginContainer" instance=ExtResource("2_vvvft")]
+layout_mode = 2
+
+[connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="on_song_finish"]

@@ -1,0 +1,176 @@
+[gd_scene load_steps=15 format=3 uid="uid://s133w8y7rddp"]
+
+[ext_resource type="Script" path="res://script/GUI/stop.gd" id="1_4r3ay"]
+[ext_resource type="Theme" uid="uid://cji2molj0sotm" path="res://theme/default_theme.tres" id="1_omi4h"]
+[ext_resource type="Script" path="res://script/currently_playing.gd" id="2_cf84d"]
+[ext_resource type="Script" path="res://script/GUI/song_progress.gd" id="3_jvue6"]
+[ext_resource type="Script" path="res://script/GUI/song_length.gd" id="5_hd380"]
+[ext_resource type="Script" path="res://scene/v_box_container.gd" id="7_6okfj"]
+[ext_resource type="Script" path="res://script/GUI/song_buttons.gd" id="7_s25yv"]
+[ext_resource type="Script" path="res://script/GUI/file_dialog.gd" id="8_8rtrk"]
+[ext_resource type="Script" path="res://script/GUI/open_file.gd" id="9_uxs2t"]
+[ext_resource type="Script" path="res://scene/toggle_loop.gd" id="10_a8sao"]
+[ext_resource type="Script" path="res://scene/progress_bar.gd" id="10_tluhg"]
+[ext_resource type="Script" path="res://script/GUI/folder_dialogue.gd" id="11_1indr"]
+[ext_resource type="Script" path="res://scene/toggle_shuffle.gd" id="12_4luag"]
+[ext_resource type="Script" path="res://script/GUI/open_folder.gd" id="12_mr66w"]
+
+[node name="default_gui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_omi4h")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(191, 0)
+layout_mode = 2
+
+[node name="playlist_buttons" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="folder_dialogue" type="FileDialog" parent="VBoxContainer/HBoxContainer/ScrollContainer/playlist_buttons"]
+auto_translate_mode = 1
+title = "Open a Directory"
+position = Vector2i(0, 36)
+size = Vector2i(1280, 720)
+popup_window = true
+mouse_passthrough = true
+ok_button_text = "Select Current Folder"
+file_mode = 2
+access = 2
+script = ExtResource("11_1indr")
+
+[node name="file_dialogue" type="FileDialog" parent="VBoxContainer/HBoxContainer/ScrollContainer/playlist_buttons"]
+auto_translate_mode = 1
+title = "Open a File"
+size = Vector2i(1280, 720)
+popup_window = true
+mouse_passthrough = true
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+use_native_dialog = true
+script = ExtResource("8_8rtrk")
+
+[node name="open_folder" type="Button" parent="VBoxContainer/HBoxContainer/ScrollContainer/playlist_buttons"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "import playlist"
+script = ExtResource("12_mr66w")
+
+[node name="open_file" type="Button" parent="VBoxContainer/HBoxContainer/ScrollContainer/playlist_buttons"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 0
+text = "import song"
+script = ExtResource("9_uxs2t")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/HBoxContainer/ScrollContainer/playlist_buttons"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/ScrollContainer/playlist_buttons/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("7_6okfj")
+
+[node name="song buttons" type="ScrollContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="song_buttons" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/song buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_omi4h")
+script = ExtResource("7_s25yv")
+
+[node name="song_controls" type="GridContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="currently_playing" type="Label" parent="VBoxContainer/song_controls"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "currently playing nothing"
+horizontal_alignment = 1
+script = ExtResource("2_cf84d")
+
+[node name="time_info" type="HBoxContainer" parent="VBoxContainer/song_controls"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="song_progress" type="Label" parent="VBoxContainer/song_controls/time_info"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "hiasdfhjs"
+script = ExtResource("3_jvue6")
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/song_controls/time_info"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+step = 0.0
+script = ExtResource("10_tluhg")
+
+[node name="song_length" type="Label" parent="VBoxContainer/song_controls/time_info"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "ksdjfhadsfh"
+script = ExtResource("5_hd380")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/song_controls"]
+layout_mode = 2
+
+[node name="toggle_loop" type="Button" parent="VBoxContainer/song_controls/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+text = "toggle loop"
+script = ExtResource("10_a8sao")
+
+[node name="toggle_playback" type="Button" parent="VBoxContainer/song_controls/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+text = "toggle playback"
+script = ExtResource("1_4r3ay")
+
+[node name="toggle_shuffle" type="Button" parent="VBoxContainer/song_controls/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+text = "toggle playback"
+script = ExtResource("12_4luag")
+
+[connection signal="dir_selected" from="VBoxContainer/HBoxContainer/ScrollContainer/playlist_buttons/folder_dialogue" to="VBoxContainer/HBoxContainer/ScrollContainer/playlist_buttons/folder_dialogue" method="_on_dir_selected"]
+[connection signal="file_selected" from="VBoxContainer/HBoxContainer/ScrollContainer/playlist_buttons/file_dialogue" to="VBoxContainer/HBoxContainer/ScrollContainer/playlist_buttons/file_dialogue" method="_on_file_selected"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ScrollContainer/playlist_buttons/open_folder" to="VBoxContainer/HBoxContainer/ScrollContainer/playlist_buttons/open_folder" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ScrollContainer/playlist_buttons/open_file" to="VBoxContainer/HBoxContainer/ScrollContainer/playlist_buttons/open_file" method="_on_pressed"]
+[connection signal="drag_ended" from="VBoxContainer/song_controls/time_info/HSlider" to="VBoxContainer/song_controls/time_info/HSlider" method="_on_drag_ended"]
+[connection signal="drag_started" from="VBoxContainer/song_controls/time_info/HSlider" to="VBoxContainer/song_controls/time_info/HSlider" method="_on_drag_started"]
+[connection signal="pressed" from="VBoxContainer/song_controls/HBoxContainer/toggle_loop" to="VBoxContainer/song_controls/HBoxContainer/toggle_loop" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/song_controls/HBoxContainer/toggle_playback" to="VBoxContainer/song_controls/HBoxContainer/toggle_playback" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/song_controls/HBoxContainer/toggle_shuffle" to="VBoxContainer/song_controls/HBoxContainer/toggle_shuffle" method="_on_pressed"]
