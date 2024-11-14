@@ -58,6 +58,7 @@ mouse_passthrough = true
 ok_button_text = "Select Current Folder"
 file_mode = 2
 access = 2
+use_native_dialog = true
 script = ExtResource("11_1indr")
 
 [node name="file_dialogue" type="FileDialog" parent="VBoxContainer/HBoxContainer/ScrollContainer/playlist_buttons"]
